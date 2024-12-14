@@ -12,7 +12,7 @@ export default function MovieList() {
       const moviesData = getAllMovies(currentLanguage); // Fetch movies based on the current language
       setMovies(moviesData);
     };
-    console.log(currentLanguage, "MovieListFetched")
+
     fetchMovies();
   }, [currentLanguage]);
 
