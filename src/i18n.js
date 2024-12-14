@@ -20,7 +20,7 @@ i18n
 
     backend: {
       // 翻訳ファイルが格納されているパス
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/translation.json`,
     },
 
     detection: {
