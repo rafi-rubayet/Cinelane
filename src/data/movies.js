@@ -114,7 +114,7 @@ const data = [
 
 function getAllMovies(lang) {
   const currentLanguage = lang || "en";
-  console.log(currentLanguage, "movies.js");
+
   return data.map((movie) => ({
     ...movie,
     title: movie.title[currentLanguage],
