@@ -1,0 +1,16 @@
+{
+  "sidebar": {
+    "trending": "Trending",
+    "new_releases": "New Releases",
+    "coming_soon": "Coming Soon",
+    "favourite": "Favourite",
+    "watch_later": "Watch Later"
+  },
+  "label": {
+    "price_icon": "$"
+  },
+  "button": {
+    "add_to_cart": "Add to Cart",
+    "remove": "Remove"
+  }
+}

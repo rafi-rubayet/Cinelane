@@ -1,0 +1,16 @@
+{
+  "sidebar": {
+    "trending": "人気作品",
+    "new_releases": "新着作品",
+    "coming_soon": "配信予定の作品",
+    "favourite": "お気に入り",
+    "watch_later": "マイリスト"
+  },
+  "label": {
+    "price_icon": "￥"
+  },
+  "button": {
+    "add_to_cart": "カートに追加",
+    "remove": "削除"
+  }
+}
