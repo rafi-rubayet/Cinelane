@@ -21,11 +21,7 @@ export default function Header() {
   };
 
   function handleCartShow() {
-    if (state.cartData.length > 0) {
-      setShowCart(true);
-    } else {
-      setShowCart(false);
-    }
+    setShowCart(!showCart);
   }
 
   const handleToggle = () => {
@@ -33,7 +29,7 @@ export default function Header() {
     switchLanguage(newLanguage);
   };
 
-  const { label, flag } = languageMap[currentLanguage];
+  const { label, flag } = languageMap[currentLanguage == "en" ? "ja" : "en"];
 
   return (
     <header>
