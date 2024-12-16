@@ -3,85 +3,112 @@ import { getImgUrl } from "../utils/cine-utility";
 import Rating from "./Rating";
 import MovieDetailsModal from "./MovieDetailsModal";
 import { MovieContext, LanguageContext } from "../context";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function MovieCard({ movie }) {
-    const [showModal, setShowModal] = useState(false);
-    const [selectedMovie, setSelectedMovie] = useState(null);
-    const { state, dispatch } = useContext(MovieContext);
-    const { t } = useContext(LanguageContext);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const { state, dispatch } = useContext(MovieContext);
+  const { t, currentLanguage } = useContext(LanguageContext);
 
-    function hadleAddToCart(event, movie) {
-        event.stopPropagation();
+  function hadleAddToCart(event, movie) {
+    event.stopPropagation();
 
-        const found = state.cartData.find((item) => {
-            return item.id === movie.id;
-        });
+    const found = state.cartData.find((item) => {
+      return item.id === movie.id;
+    });
 
-        if (!found) {
-            dispatch({
-                type: "ADD_TO_CART",
-                payload: {
-                    ...movie,
-                },
-            });
-            toast.success(`Added  ${movie.title} to Cart !`, {
-                position: toast.POSITION.BOTTOM_RIGHT,
-            });
-        } else {
-            toast.error( `The movie ${movie.title} has been added to the cart already`, {
-                position: toast.POSITION.BOTTOM_RIGHT,
-            });
+    if (!found) {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: {
+          ...movie,
+        },
+      });
+      toast.success(`Added  ${movie.title} to Cart !`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } else {
+      toast.error(
+        `The movie ${movie.title} has been added to the cart already`,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
+      );
+    }
+  }
+
+  function hadleMovieSelection(movie) {
+    setSelectedMovie(movie);
+    setShowModal(true);
+  }
+
+  function handleModalClose() {
+    setSelectedMovie(null);
+    setShowModal(false);
+  }
+
+  function formatPrice(price) {
+    function addCommas(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    function hadleMovieSelection(movie) {
-        setSelectedMovie(movie);
-        setShowModal(true);
+    if (currentLanguage === "en") {
+      return addCommas(price);
+    } else if (currentLanguage === "ja") {
+      let convertedPrice = price * 150;
+      return addCommas(convertedPrice);
     }
 
-    function handleModalClose() {
-        setSelectedMovie(null);
-        setShowModal(false);
-    }
+    // Fallback: return the price as is if currentLanguage is neither "en" nor "ja"
+    return price.toString();
+  }
 
-    return (
-        <>
-            {showModal && (
-                <MovieDetailsModal
-                    movie={selectedMovie}
-                    onClose={handleModalClose}
-                    onCartAdd={hadleAddToCart}
-                />
-            )}
-            <figure
-                className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl"
+  return (
+    <>
+      {showModal && (
+        <MovieDetailsModal
+          movie={selectedMovie}
+          onClose={handleModalClose}
+          onCartAdd={hadleAddToCart}
+        />
+      )}
+      <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
+        <a href="#" onClick={() => hadleMovieSelection(movie)}>
+          <img
+            className="w-full h-[400px] object-cover"
+            src={getImgUrl(`${movie.cover}`)}
+            alt={movie.title}
+          />
+          <figcaption className="pt-4">
+            <h3 className="text-xl mb-1 line-clamp-1" title={movie.title}>
+              {movie.title}
+            </h3>
+            <p
+              className="text-[#575A6E] text-sm mb-2 line-clamp-1"
+              title={movie.genre}
             >
-                <a href="#" onClick={() => hadleMovieSelection(movie)}>
-                    <img
-                        className="w-full h-[400px] object-cover"
-                        src={getImgUrl(`${movie.cover}`)}
-                        alt={movie.title}
-                    />
-                    <figcaption className="pt-4">
-                        <h3 className="text-xl mb-1 line-clamp-1" title={movie.title}>{movie.title}</h3>
-                        <p className="text-[#575A6E] text-sm mb-2 line-clamp-1" title={movie.genre}>
-                            {movie.genre}
-                        </p>
-                        <div className="flex items-center space-x-1 mb-5">
-                            <Rating value={movie.rating} />
-                        </div>
-                        <button
-                            className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
-                            href="#"
-                            onClick={(e) => hadleAddToCart(e, movie)}
-                        >
-                            <img src="./assets/tag.svg" alt="" />
-                            <span> { `${t('label.price_icon')}${movie.price} | ${t('button.add_to_cart')}` }</span>
-                        </button>
-                    </figcaption>
-                </a>
-            </figure>
-        </>
-    );
+              {movie.genre}
+            </p>
+            <div className="flex items-center space-x-1 mb-5">
+              <Rating value={movie.rating} />
+            </div>
+            <button
+              className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
+              href="#"
+              onClick={(e) => hadleAddToCart(e, movie)}
+            >
+              <img src="./assets/tag.svg" alt="" />
+              <span>
+                {" "}
+                {`${t("label.price_icon")}${formatPrice(movie.price)} | ${t(
+                  "button.add_to_cart"
+                )}`}
+              </span>
+            </button>
+          </figcaption>
+        </a>
+      </figure>
+    </>
+  );
 }
