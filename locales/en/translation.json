@@ -7,10 +7,14 @@
     "watch_later": "Watch Later"
   },
   "label": {
-    "price_icon": "$"
+    "price_icon": "$",
+    "your_carts": "Your Carts",
+    "empty_cart": "The Cart is Empty!!!"
   },
   "button": {
     "add_to_cart": "Add to Cart",
-    "remove": "Remove"
+    "remove": "Remove",
+    "checkout": "Checkout",
+    "cancel": "Cancel"
   }
 }
