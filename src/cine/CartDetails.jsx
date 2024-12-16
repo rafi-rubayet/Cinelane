@@ -8,8 +8,11 @@ import Delete from "../assets/delete.svg";
 
 import { toast } from 'react-toastify';
 
+import { LanguageContext } from "../context";
+
 export default function CartDetails({ onClose }) {
     const { state, dispatch } = useContext(MovieContext);
+    const { t } = useContext(LanguageContext);
 
     function handleDeleteCart(event, item) {
         event.preventDefault();
@@ -28,13 +31,13 @@ export default function CartDetails({ onClose }) {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[790px] p-4 max-h-[90vh] overflow-auto">
                 <div className="bg-white shadow-md dark:bg-[#12141D] rounded-2xl overflow-hidden p-5 md:p-9">
                     <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">
-                        Your Carts
+                        { t('label.your_carts') }
                     </h2>
                     <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
                     {
                         state.cartData.length === 0 ?
                         (
-                            <p className="text-3xl">The Cart is Empty!!!</p>
+                            <p className="text-3xl">{ t('label.empty_cart') }</p>
                          ) :
                         (<>
                             {state.cartData.map((item) => (
@@ -73,7 +76,7 @@ export default function CartDetails({ onClose }) {
                                                 alt="delete"
                                             />
                                             <span className="max-md:hidden">
-                                                Remove
+                                                { t('button.remove') }
                                             </span>
                                         </button>
                                     </div>
@@ -93,14 +96,14 @@ export default function CartDetails({ onClose }) {
                                 height="24"
                                 alt="Checkout"
                             />
-                            <span>Checkout</span>
+                            <span>{ t('button.checkout') }</span>
                         </a>
                         <a
                             className="border border-[#74766F] rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#6F6F6F] dark:text-gray-200 font-semibold text-sm"
                             href="#"
                             onClick={onClose}
                         >
-                            Cancel
+                            { t('button.cancel') }
                         </a>
                     </div>
                 </div>

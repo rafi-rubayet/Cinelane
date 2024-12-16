@@ -7,10 +7,14 @@
     "watch_later": "マイリスト"
   },
   "label": {
-    "price_icon": "￥"
+    "price_icon": "￥",
+    "your_carts": "カート",
+    "empty_cart": "データが見つかりません。"
   },
   "button": {
     "add_to_cart": "カートに追加",
-    "remove": "削除"
+    "remove": "削除",
+    "checkout": "チェックアウト",
+    "cancel": "キャンセル"
   }
 }

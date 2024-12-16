@@ -39,7 +39,7 @@ export default function Header() {
     <header>
       {showCart && <CartDetails onClose={() => setShowCart(false)} />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
-        <a href="index.html">
+        <a href="/">
           <div className="flex space-x-3 items-center">
             <i className="pi pi-video text-primary" style={{ fontSize: "1.3rem" }}></i>
             <p className="text-xl text-primary font-bold tracking-wide">
