@@ -18,7 +18,7 @@ const data = [
       ja: "ドラマ",
     },
     rating: 5,
-    price: 140,
+    price: 14,
   },
   {
     id: crypto.randomUUID(),
@@ -54,7 +54,7 @@ const data = [
       ja: "アクション",
     },
     rating: 4,
-    price: 100,
+    price: 10,
   },
   {
     id: crypto.randomUUID(),
@@ -72,7 +72,7 @@ const data = [
       ja: "コメディ、ドラマ、サスペンス、",
     },
     rating: 4,
-    price: 250,
+    price: 25,
   },
   {
     id: crypto.randomUUID(),
@@ -90,7 +90,7 @@ const data = [
       ja: "アクション、アドベンチャー・冒険、SF",
     },
     rating: 5,
-    price: 100,
+    price: 10,
   },
   {
     id: crypto.randomUUID(),
@@ -108,7 +108,7 @@ const data = [
       ja: "アクション、アドベンチャー・冒険、ファンタジー",
     },
     rating: 8,
-    price: 200,
+    price: 20,
   },
 ];
 
