@@ -53,15 +53,11 @@ export default function MovieCard({ movie }) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    if (currentLanguage === "en") {
-      return addCommas(price);
-    } else if (currentLanguage === "ja") {
-      let convertedPrice = price * 150;
-      return addCommas(convertedPrice);
+    if (currentLanguage === "ja") {
+        price = price * 150;
     }
 
-    // Fallback: return the price as is if currentLanguage is neither "en" nor "ja"
-    return price.toString();
+    return addCommas(price);
   }
 
   return (
