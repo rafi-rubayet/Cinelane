@@ -37,7 +37,10 @@ export default function Header() {
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="/">
           <div className="flex space-x-3 items-center">
-            <i className="pi pi-video text-primary" style={{ fontSize: "1.3rem" }}></i>
+            <i
+              className="pi pi-video text-primary"
+              style={{ fontSize: "1.3rem" }}
+            ></i>
             <p className="text-xl text-primary font-bold tracking-wide">
               CineLane
             </p>
@@ -51,7 +54,10 @@ export default function Header() {
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
               href="#"
             >
-              <i className="pi pi-bell text-primary" style={{ fontSize: "1.1rem" }}></i>
+              <i
+                className="pi pi-bell text-primary"
+                style={{ fontSize: "1.1rem" }}
+              ></i>
             </a>
           </li>
 
@@ -75,7 +81,17 @@ export default function Header() {
               href="#"
               onClick={() => setDarkMode((darkMode) => !darkMode)}
             >
-              { darkMode ? <i className="pi pi-sun text-primary" style={{ fontSize: "1.1rem" }}></i> : <i className="pi pi-moon text-primary" style={{ fontSize: "1rem" }}></i> }
+              {darkMode ? (
+                <i
+                  className="pi pi-sun text-primary"
+                  style={{ fontSize: "1.1rem" }}
+                ></i>
+              ) : (
+                <i
+                  className="pi pi-moon text-primary"
+                  style={{ fontSize: "1rem" }}
+                ></i>
+              )}
             </a>
           </li>
 
@@ -86,7 +102,10 @@ export default function Header() {
               href="#"
               onClick={handleCartShow}
             >
-              <i className="pi pi-shopping-cart text-primary" style={{ fontSize: "1.1rem" }}></i>
+              <i
+                className="pi pi-shopping-cart text-primary"
+                style={{ fontSize: "1.1rem" }}
+              ></i>
               {state.cartData.length > 0 && (
                 <span className="rounded-full absolute top-[-10px] right-[-10px] bg-[#12CF6F] text-white text-center text-sm leading-[15px] w-[18px] h-[18px]">
                   {state.cartData.length}
