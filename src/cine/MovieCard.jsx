@@ -2,15 +2,14 @@ import { useState, useContext } from "react";
 import { getImgUrl } from "../utils/cine-utility";
 import Rating from "./Rating";
 import MovieDetailsModal from "./MovieDetailsModal";
-import { MovieContext } from "../context";
+import { MovieContext, LanguageContext } from "../context";
 import { toast } from 'react-toastify';
-import useLanguage from "../hooks/useLanguage";
 
 export default function MovieCard({ movie }) {
     const [showModal, setShowModal] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const { state, dispatch } = useContext(MovieContext);
-    const { t } = useLanguage();
+    const { t } = useContext(LanguageContext);
 
     function hadleAddToCart(event, movie) {
         event.stopPropagation();
@@ -65,8 +64,8 @@ export default function MovieCard({ movie }) {
                         alt={movie.title}
                     />
                     <figcaption className="pt-4">
-                        <h3 className="text-xl mb-1 line-clamp-1">{movie.title}</h3>
-                        <p className="text-[#575A6E] text-sm mb-2">
+                        <h3 className="text-xl mb-1 line-clamp-1" title={movie.title}>{movie.title}</h3>
+                        <p className="text-[#575A6E] text-sm mb-2 line-clamp-1" title={movie.genre}>
                             {movie.genre}
                         </p>
                         <div className="flex items-center space-x-1 mb-5">
